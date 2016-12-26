@@ -9,17 +9,19 @@
 
 int main() {
     
-    char menu;
+	char menu;
     PIECE pecas[32];
     char quem_joga;
     char nome_jogo[256];
-    
+
+    setvbuf(stdout, NULL, _IONBF, 0);
     
     while(1){
         puts("********** XADREZ AFA **********");
         puts(" 1 - Novo jogo\n 2 - Carregar jogo\n 3 - Guardar jogo\n 4 - Continuar jogo\n s - Sair\n");
         puts("\n\n\n O que pretende fazer?: ");
-        scanf(" %c", &menu);
+
+scanf(" %c", &menu);
         
 		switch(menu){
             case'1':
@@ -29,6 +31,12 @@ int main() {
                     return 0;
                 }
                 showBoard(pecas);
+                while( escolher_peca(quem_joga, pecas)==1 )
+                {
+
+                showBoard(pecas);
+
+                }
                 break;
             case'2':
                 puts("Introduza o nome do jogo a carregar:\n");
@@ -36,9 +44,15 @@ int main() {
                 quem_joga = carregar_jogo(nome_jogo, pecas);
                 if(quem_joga == 'e'){
                     printf("ATENCAO: o ficheiro [%s] nao existe.\n\n", nome_jogo);
-                    return 0;;
+                    return 0;
                 }
                 showBoard(pecas);
+                while( escolher_peca(quem_joga, pecas)==1 )
+                {
+
+                showBoard(pecas);
+
+                }
                 break;
             case'3':
                 quem_joga = guardar_jogo(pecas, quem_joga);
@@ -46,6 +60,12 @@ int main() {
                 break;
             case'4':
                 showBoard(pecas);
+                while( escolher_peca(quem_joga, pecas)==1 )
+                {
+
+                showBoard(pecas);
+
+                }
                 break;
             case's':
                 printf("adeus\n");
@@ -62,4 +82,5 @@ int main() {
             break;
         }
     }
+    return 0;
 }

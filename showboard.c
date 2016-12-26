@@ -56,24 +56,26 @@ void setcolor(int textcol,int backcol)
 void showBoard(PIECE pieces[32]){
 	char piece;
 	int i, j;
-	int board[MAXLINES][MAXCOL] = {-1, 1, 2, 3, 4, 5, 6, 7, 8, -1,
-	    16, 0, 0, 0, 0, 0, 0, 0, 0, 16,
-	    15, 0, 0, 0, 0, 0, 0, 0, 0, 15,
-	    14, 0, 0, 0, 0, 0, 0, 0, 0, 14,
-	    13, 0, 0, 0, 0, 0, 0, 0, 0, 13,
-	    12, 0, 0, 0, 0, 0, 0, 0, 0, 12,
-	    11, 0, 0, 0, 0, 0, 0, 0, 0, 11,
-	    10, 0, 0, 0, 0, 0, 0, 0, 0, 10,
-	    9, 0, 0, 0, 0, 0, 0, 0, 0, 9,
-	    -1, 1, 2, 3, 4, 5, 6, 7, 8, -1
+	int board[MAXLINES][MAXCOL] =
+	   {{-1, 1, 2, 3, 4, 5, 6, 7, 8, -1},
+	    {16, 0, 0, 0, 0, 0, 0, 0, 0, 16},
+	    {15, 0, 0, 0, 0, 0, 0, 0, 0, 15},
+	    {14, 0, 0, 0, 0, 0, 0, 0, 0, 14},
+	    {13, 0, 0, 0, 0, 0, 0, 0, 0, 13},
+	    {12, 0, 0, 0, 0, 0, 0, 0, 0, 12},
+	    {11, 0, 0, 0, 0, 0, 0, 0, 0, 11},
+	    {10, 0, 0, 0, 0, 0, 0, 0, 0, 10},
+	    { 9, 0, 0, 0, 0, 0, 0, 0, 0, 9},
+	    {-1, 1, 2, 3, 4, 5, 6, 7, 8, -1}
 	};
 	int pieceIndex =  0;
 	int pieceSquare[2];
 	for (pieceIndex = 0; pieceIndex < 32; pieceIndex++){
 		if(pieces[pieceIndex].state==1){
-			pieceSquare[0] = pieces[pieceIndex].square.file - 'a' + 1;
-			pieceSquare[1] = '8' - pieces[pieceIndex].square.rank  + 1;
-			board[ pieceSquare[1] ][ pieceSquare[0] ] = ( pieces[pieceIndex].color == 'w' ? pieces[pieceIndex].type : -pieces[pieceIndex].type) ;
+			pieceSquare[0] = pieces[pieceIndex].square.rank - 'a' + 1;
+			pieceSquare[1] = '8' - pieces[pieceIndex].square.file  + 1;
+			//board[ pieceSquare[1] ][ pieceSquare[0] ] = ( pieces[pieceIndex].color == 'w' ? pieces[pieceIndex].type : -pieces[pieceIndex].type) ;
+			board[ pieceSquare[1] ][ pieceSquare[0] ] = pieces[pieceIndex].type;
 		}
 	}
 	    for (i = 0; i < MAXLINES; i++) {
